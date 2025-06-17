@@ -2,6 +2,7 @@ function updateTemperature(response){
     console.log(response.data);
     
 
+
     let cityInput=document.querySelector(".text-input");
     let h1=document.querySelector("h1");
     let temperatureElement=document.querySelector(".temperature");
@@ -21,19 +22,26 @@ function updateTemperature(response){
 
     let dayTime=document.querySelector(".time");
     dayTime.innerHTML=`${day} ${formattedHour}:${formattedMinutes}`;
+      
+
 }
+
 
 function changeCity(event){
     event.preventDefault();
     let cityValue=document.querySelector(".text-input").value;
     let apiKey="ccee108c068d4d38b8b202029252705";
     let apiUrl=`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${cityValue}`;
+    
 
+   
     axios.get(apiUrl).then(updateTemperature).catch(error=>{
         document.querySelector(".temperature").textContent="error";
         console.error(error);
     });
 }
+
+
 
 let button=document.querySelector(".submit-button");
 button.addEventListener("click",changeCity);
